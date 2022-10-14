@@ -1,5 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
+const fs = require('fs');
+const generateMarkdown = require('./utils/generateMarkdown');
 // TODO: Create an array of questions for user input
 const questions = () => {
     return inquirer.prompt([
@@ -11,7 +13,7 @@ const questions = () => {
                 if (titleInput) {
                     return true;
                 } else {
-                    console.log('Need a title.');
+                    console.log('Need a title.')
                     return false;
                 }
             }
@@ -51,14 +53,6 @@ const questions = () => {
             type: 'input',
             name: 'contribution',
             message: 'Who helped with this project?',
-            validate: contributionInput => {
-                if (contributionInput) {
-                    return true;
-                } else {
-                    console.log('Code doesnt write iteself.')
-                    return false;
-                }
-            }
         },
         {
             type: 'input',
@@ -90,15 +84,23 @@ const questions = () => {
             message: 'What is your email?'
         }
     ])
+        .then(data => {
+            return data;
+        }) // I have tried multiple ways to get this to save the responses but it just wont.
 };
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(README, data) {
+    fs.writeToFile('./README.md', generateMarkdown(data), err => {
+        if (err) {throw err;}
+    });
+};
 
 // TODO: Create a function to initialize app
 function init() {
     questions()
-}
+        .then(writeToFile)
+};
 
 // Function call to initialize app
 init();
