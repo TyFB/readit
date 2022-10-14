@@ -1,3 +1,4 @@
-# Professional README Generator Starter Code
+# readit
 
-[How to create a Professional README](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
+## Description
+Code doesnt want to save my data so Im giving up on this, I have refrenced others code and it seems like im doing it correctly. But when I console.log it, turns out nothing is being saved. I'm getting to pissed off with this and before it breaks me ill just hand it over. 
